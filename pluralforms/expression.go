@@ -14,7 +14,7 @@ type Const struct {
 	Value int
 }
 
-func (c Const) Eval (n uint32) int {
+func (c Const) Eval(n uint32) int {
 	return c.Value
 }
 

@@ -5,10 +5,10 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+	"github.com/ojii/gogettext/pluralforms"
 	"log"
 	"os"
 	"strings"
-	"github.com/ojii/gogettext/pluralforms"
 )
 
 const LE_MAGIC = 0x950412de
@@ -91,7 +91,7 @@ func read_len_off(index uint32, file *os.File, order binary.ByteOrder) (len_offs
 	return lenoff, nil
 }
 
-func read_message(file *os.File, lenoff len_offset) (string, error){
+func read_message(file *os.File, lenoff len_offset) (string, error) {
 	_, err := file.Seek(int64(lenoff.Off), os.SEEK_SET)
 	if err != nil {
 		return "", err
@@ -138,11 +138,11 @@ func (catalog *Catalog) ReadInfo(info string) error {
 }
 
 func ParseMO(file *os.File) (Catalog, error) {
-	var order binary.ByteOrder;
+	var order binary.ByteOrder
 	header := Header{}
 	catalog := Catalog{
-		Header: header,
-		Info: make(map[string]string),
+		Header:   header,
+		Info:     make(map[string]string),
 		Messages: make(map[string][]string),
 	}
 	magic := make([]byte, 4)
@@ -207,7 +207,6 @@ func ParseMO(file *os.File) (Catalog, error) {
 		} else {
 			catalog.Messages[msgid] = []string{msgstr}
 		}
-
 
 		current_master_index += 8
 		current_transl_index += 8

@@ -1,19 +1,17 @@
 package gogettext
 
 import (
-	"testing"
-	"os"
 	"fmt"
+	"os"
+	"testing"
 )
 
-
-func assert_equal(t *testing.T, expected string, got string){
+func assert_equal(t *testing.T, expected string, got string) {
 	if expected != got {
 		t.Logf("%s != %s", expected, got)
 		t.Fail()
 	}
 }
-
 
 func TestEnGettext(t *testing.T) {
 	file, err := os.Open("testdata/en.mo")
